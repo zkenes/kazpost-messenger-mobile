@@ -1,4 +1,4 @@
-#!./node_modules/.bin/babel-node
+/* eslint no-console: 0 no-multiple-empty-lines: 0 */
 
 import {mapStateToProps} from './app/components/post/index.js';
 import {mapStateToPropsWithPostSelectors} from './app/components/post/index-getposts.js';
@@ -27,7 +27,7 @@ function makeState() {
                     aaa: {id: 'aaa', root_id: '', channel_id: 'abcd', create_at: 1000},
                     aab: {id: 'aab', root_id: 'aaa', channel_id: 'abcd', create_at: 1001},
                     aac: {id: 'aac', root_id: 'aaa', channel_id: 'abcd', create_at: 1002},
-                    aad: {id: 'aad', root_id: 'aaa', channel_id: 'abcd', create_at: 1003},
+                    aad: {id: 'aad', root_id: 'aaa', channel_id: 'abcd', create_at: 1003}
                 }
             },
             preferences: {
@@ -59,7 +59,7 @@ const state2 = makeState();
 
 console.time('original');
 
-for (const i = 0; i < 1000000; i++) {
+for (let i = 0; i < 1000000; i++) {
     mapStateToProps(state, {postId: 'aab', renderReplies: true});
 }
 
@@ -68,7 +68,7 @@ console.timeEnd('original');
 
 console.time('passing previousPost/nextPost instead of isFirstReply/isLastReply');
 
-for (const i = 0; i < 1000000; i++) {
+for (let i = 0; i < 1000000; i++) {
     mapStateToPropsWithPostSelectors(state, {postId: 'aab', renderReplies: true});
 }
 
@@ -79,7 +79,7 @@ console.time('using isPostFirstReply/isPostLastReply selectors');
 
 // This one is actually broken since it returns commentedOnPost when it shouldn't
 
-for (const i = 0; i < 1000000; i++) {
+for (let i = 0; i < 1000000; i++) {
     mapStateToPropsWithMoreSelectors(state, {postId: 'aab', renderReplies: true});
 }
 
@@ -89,8 +89,8 @@ console.timeEnd('using isPostFirstReply/isPostLastReply selectors');
 
 console.time('original, with state changes');
 
-for (const i = 0; i < 1000000; i++) {
-    mapStateToProps(i % 2 == 0 ? state : state2, {postId: 'aab', renderReplies: true});
+for (let i = 0; i < 1000000; i++) {
+    mapStateToProps(i % 2 === 0 ? state : state2, {postId: 'aab', renderReplies: true});
 }
 
 console.timeEnd('original, with state changes');
@@ -98,8 +98,8 @@ console.timeEnd('original, with state changes');
 
 console.time('passing previousPost/nextPost instead of isFirstReply/isLastReply, with state changes');
 
-for (const i = 0; i < 1000000; i++) {
-    mapStateToPropsWithPostSelectors(i % 2 == 0 ? state : state2, {postId: 'aab', renderReplies: true});
+for (let i = 0; i < 1000000; i++) {
+    mapStateToPropsWithPostSelectors(i % 2 === 0 ? state : state2, {postId: 'aab', renderReplies: true});
 }
 
 console.timeEnd('passing previousPost/nextPost instead of isFirstReply/isLastReply, with state changes');
@@ -109,8 +109,8 @@ console.time('using isPostFirstReply/isPostLastReply selectors, with state chang
 
 // This one is actually broken since it returns commentedOnPost when it shouldn't
 
-for (const i = 0; i < 1000000; i++) {
-    mapStateToPropsWithMoreSelectors(i % 2 == 0 ? state : state2, {postId: 'aab', renderReplies: true});
+for (let i = 0; i < 1000000; i++) {
+    mapStateToPropsWithMoreSelectors(i % 2 === 0 ? state : state2, {postId: 'aab', renderReplies: true});
 }
 
 console.timeEnd('using isPostFirstReply/isPostLastReply selectors, with state changes');
