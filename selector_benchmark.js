@@ -53,6 +53,7 @@ function makeState() {
 }
 
 const state = makeState();
+const state2 = makeState();
 
 // console.log(mapStateToProps(state, {postId: 'aab', }));
 
@@ -89,7 +90,7 @@ console.timeEnd('using isPostFirstReply/isPostLastReply selectors');
 console.time('original, with state changes');
 
 for (const i = 0; i < 1000000; i++) {
-    mapStateToProps(makeState(), {postId: 'aab', renderReplies: true});
+    mapStateToProps(i % 2 == 0 ? state : state2, {postId: 'aab', renderReplies: true});
 }
 
 console.timeEnd('original, with state changes');
@@ -98,7 +99,7 @@ console.timeEnd('original, with state changes');
 console.time('passing previousPost/nextPost instead of isFirstReply/isLastReply, with state changes');
 
 for (const i = 0; i < 1000000; i++) {
-    mapStateToPropsWithPostSelectors(makeState(), {postId: 'aab', renderReplies: true});
+    mapStateToPropsWithPostSelectors(i % 2 == 0 ? state : state2, {postId: 'aab', renderReplies: true});
 }
 
 console.timeEnd('passing previousPost/nextPost instead of isFirstReply/isLastReply, with state changes');
@@ -109,7 +110,7 @@ console.time('using isPostFirstReply/isPostLastReply selectors, with state chang
 // This one is actually broken since it returns commentedOnPost when it shouldn't
 
 for (const i = 0; i < 1000000; i++) {
-    mapStateToPropsWithMoreSelectors(makeState(), {postId: 'aab', renderReplies: true});
+    mapStateToPropsWithMoreSelectors(i % 2 == 0 ? state : state2, {postId: 'aab', renderReplies: true});
 }
 
 console.timeEnd('using isPostFirstReply/isPostLastReply selectors, with state changes');
