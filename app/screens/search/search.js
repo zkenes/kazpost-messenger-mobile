@@ -452,13 +452,12 @@ class Search extends PureComponent {
 
             InteractionManager.runAfterInteractions(() => {
                 handleSelectChannel(channelId);
-                requestAnimationFrame(() => {
-                    // mark the channel as viewed after all the frame has flushed
-                    markChannelAsRead(channelId, currentChannelId);
-                    if (channelId !== currentChannelId) {
-                        markChannelAsViewed(currentChannelId);
-                    }
-                });
+
+                // mark the channel as viewed after all the frame has flushed
+                markChannelAsRead(channelId, currentChannelId);
+                if (channelId !== currentChannelId) {
+                    markChannelAsViewed(currentChannelId);
+                }
 
                 this.props.navigator.dismissModal({animationType: 'slide-down'});
             });

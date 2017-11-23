@@ -13,7 +13,6 @@ import EventEmitter from 'mattermost-redux/utils/event_emitter';
 
 import ClientUpgradeListener from 'app/components/client_upgrade_listener';
 import ChannelDrawer from 'app/components/channel_drawer';
-import ChannelLoader from 'app/components/channel_loader';
 import KeyboardLayout from 'app/components/layout/keyboard_layout';
 import Loading from 'app/components/loading';
 import OfflineIndicator from 'app/components/offline_indicator';
@@ -86,6 +85,12 @@ class Channel extends PureComponent {
         this.postTextbox.getWrappedInstance().getWrappedInstance().blur();
     };
 
+    channelDrawerRef = (ref) => {
+        if (ref) {
+            this.channelDrawer = ref.getWrappedInstance();
+        }
+    };
+
     goToChannelInfo = wrapWithPreventDoubleTap(() => {
         const {intl, navigator, theme} = this.props;
         const options = {
@@ -147,6 +152,12 @@ class Channel extends PureComponent {
         });
     };
 
+    openChannelDrawer = () => {
+        if (this.channelDrawer) {
+            this.channelDrawer.openChannelDrawer();
+        }
+    };
+
     retryLoadChannels = () => {
         this.loadChannels(this.props.currentTeamId);
     };
@@ -180,6 +191,7 @@ class Channel extends PureComponent {
 
         return (
             <ChannelDrawer
+                ref={this.channelDrawerRef}
                 blurPostTextBox={this.blurPostTextBox}
                 intl={intl}
                 navigator={navigator}
@@ -188,7 +200,7 @@ class Channel extends PureComponent {
                 <View>
                     <OfflineIndicator/>
                     <View style={style.header}>
-                        <ChannelDrawerButton/>
+                        <ChannelDrawerButton openDrawer={this.openChannelDrawer}/>
                         <ChannelTitle onPress={this.goToChannelInfo}/>
                         <ChannelSearchButton
                             navigator={navigator}
@@ -203,12 +215,10 @@ class Channel extends PureComponent {
                     <View style={style.postList}>
                         <ChannelPostList navigator={navigator}/>
                     </View>
-                    <ChannelLoader theme={theme}/>
                     <PostTextbox
                         ref={this.attachPostTextbox}
                         navigator={navigator}
                     />
-                    <ChannelLoader theme={theme}/>
                 </KeyboardLayout>
                 {LocalConfig.EnableMobileClientUpgrade && <ClientUpgradeListener navigator={navigator}/>}
             </ChannelDrawer>

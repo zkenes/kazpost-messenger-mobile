@@ -5,6 +5,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import {injectIntl, intlShape} from 'react-intl';
 import {
+    Animated,
     Platform,
     StyleSheet,
     View
@@ -13,6 +14,8 @@ import {
 import PostList from 'app/components/post_list';
 import PostListRetry from 'app/components/post_list_retry';
 import RetryBarIndicator from 'app/components/retry_bar_indicator';
+
+const {View: AnimatedView} = Animated;
 
 class ChannelPostList extends PureComponent {
     static propTypes = {
@@ -24,6 +27,7 @@ class ChannelPostList extends PureComponent {
             refreshChannelWithRetry: PropTypes.func.isRequired
         }).isRequired,
         channelId: PropTypes.string.isRequired,
+        channelIsLoading: PropTypes.bool,
         channelRefreshingFailed: PropTypes.bool,
         currentUserId: PropTypes.string,
         intl: intlShape.isRequired,
@@ -42,7 +46,12 @@ class ChannelPostList extends PureComponent {
     constructor(props) {
         super(props);
 
+        this.animatedHeight = new Animated.Value(100);
+        this.animatedHeight.addListener(({value: height}) => this.setState({height}));
+
         this.state = {
+            opacity: new Animated.Value(1),
+            height: 100,
             visiblePostIds: this.getVisiblePostIds(props),
             showLoadMore: props.postIds.length >= props.postVisibility
         };
@@ -58,11 +67,43 @@ class ChannelPostList extends PureComponent {
             visiblePostIds = this.getVisiblePostIds(nextProps);
         }
 
+        if (nextProps.channelIsLoading !== this.props.channelIsLoading) {
+            if (nextProps.channelIsLoading) {
+                this.fade(false);
+            } else {
+                this.fade(true);
+            }
+        }
+
         this.setState({
             showLoadMore,
             visiblePostIds
         });
     }
+
+    fade = (show) => {
+        const duration = 150;
+        let maxHeight = 0;
+        let maxOpacity = 0;
+
+        if (show) {
+            maxHeight = 100;
+            maxOpacity = 1;
+        }
+
+        Animated.parallel([
+            Animated.timing(this.state.opacity, {
+                toValue: maxOpacity,
+                duration,
+                useNativeDriver: true
+            }).start(),
+            Animated.timing(this.animatedHeight, {
+                toValue: maxHeight,
+                duration,
+                useNativeDriver: true
+            }).start()
+        ]);
+    };
 
     getVisiblePostIds = (props) => {
         return props.postIds.slice(0, props.postVisibility);
@@ -155,8 +196,10 @@ class ChannelPostList extends PureComponent {
 
         return (
             <View style={style.container}>
-                {component}
-                <RetryBarIndicator/>
+                <AnimatedView style={{opacity: this.state.opacity, height: `${this.state.height}%`}}>
+                    {component}
+                    <RetryBarIndicator/>
+                </AnimatedView>
             </View>
         );
     }
@@ -164,7 +207,8 @@ class ChannelPostList extends PureComponent {
 
 const style = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        justifyContent: 'flex-end'
     }
 });
 

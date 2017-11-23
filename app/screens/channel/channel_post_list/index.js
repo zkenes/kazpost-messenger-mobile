@@ -23,6 +23,7 @@ function makeMapStateToProps() {
 
         return {
             channelId,
+            channelIsLoading: state.views.channel.loading,
             channelRefreshingFailed,
             currentUserId: getCurrentUserId(state),
             postIds: getPostIdsInCurrentChannel(state),

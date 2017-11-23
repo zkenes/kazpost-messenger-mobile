@@ -16,7 +16,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Badge from 'app/components/badge';
 import PushNotifications from 'app/push_notifications';
 import {getTheme} from 'mattermost-redux/selectors/entities/preferences';
-import {preventDoubleTap} from 'app/utils/tap';
+import {wrapWithPreventDoubleTap} from 'app/utils/tap';
 import {makeStyleSheetFromTheme} from 'app/utils/theme';
 
 import {getUnreadsInCurrentTeam} from 'mattermost-redux/selectors/entities/channels';
@@ -26,10 +26,11 @@ import EventEmitter from 'mattermost-redux/utils/event_emitter';
 class ChannelDrawerButton extends PureComponent {
     static propTypes = {
         currentTeamId: PropTypes.string.isRequired,
-        myTeamMembers: PropTypes.object,
-        theme: PropTypes.object,
+        openDrawer: PropTypes.func.isRequired,
         messageCount: PropTypes.number,
-        mentionCount: PropTypes.number
+        mentionCount: PropTypes.number,
+        myTeamMembers: PropTypes.object,
+        theme: PropTypes.object
     };
 
     static defaultProps = {
@@ -74,9 +75,9 @@ class ChannelDrawerButton extends PureComponent {
         this.setState({opacity: value > 0 ? 0.1 : 1});
     };
 
-    handlePress = () => {
-        EventEmitter.emit('open_channel_drawer');
-    };
+    handlePress = wrapWithPreventDoubleTap(() => {
+        this.props.openDrawer();
+    });
 
     render() {
         const {
@@ -113,7 +114,7 @@ class ChannelDrawerButton extends PureComponent {
                     count={badgeCount}
                     minHeight={20}
                     minWidth={20}
-                    onPress={() => preventDoubleTap(this.handlePress, this)}
+                    onPress={this.handlePress}
                 />
             );
         }
