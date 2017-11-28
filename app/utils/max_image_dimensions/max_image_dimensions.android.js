@@ -4,5 +4,6 @@
 import {NativeModules} from 'react-native';
 
 export function getMaxImageDimensions() {
+    return {width: 4096, height: 4096};
     return NativeModules.MaxImageDimensions.getMaxImageDimensions();
 }
