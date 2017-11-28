@@ -35,6 +35,7 @@ import com.wix.reactnativenotifications.core.notification.IPushNotification;
 import com.wix.reactnativenotifications.core.AppLaunchHelper;
 import com.wix.reactnativenotifications.core.AppLifecycleFacade;
 import com.wix.reactnativenotifications.core.JsIOHelper;
+import com.mattermost.rnbeta.MaxImageDimensions;
 
 import java.util.Arrays;
 import java.util.List;
@@ -70,7 +71,8 @@ public class MainApplication extends NavigationApplication implements INotificat
             new ReactNativeExceptionHandlerPackage(),
             new ReactNativeYouTube(),
             new ReactVideoPackage(),
-            new RNReactNativeDocViewerPackage()
+            new RNReactNativeDocViewerPackage(),
+            new MaxImageDimensions()
     );
   }
 
