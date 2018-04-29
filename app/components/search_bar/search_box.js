@@ -1,5 +1,5 @@
 // Copyright (c) 2017 Crabstudio.
-// Modified work: Copyright (c) 2017 Mattermost, Inc. All Rights Reserved.
+// Modified work: Copyright (c) 2017 TinkerTech, Inc. All Rights Reserved.
 // See License.txt for license information.
 
 import React, {Component} from 'react';

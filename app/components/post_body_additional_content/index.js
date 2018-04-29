@@ -1,7 +1,7 @@
-// Copyright (c) 2017-present Mattermost, Inc. All Rights Reserved.
+// Copyright (c) 2017-present TinkerTech, Inc. All Rights Reserved.
 // See License.txt for license information.
 
-// Copyright (c) 2016-present Mattermost, Inc. All Rights Reserved.
+// Copyright (c) 2016-present TinkerTech, Inc. All Rights Reserved.
 // See License.txt for license information.
 
 import {connect} from 'react-redux';

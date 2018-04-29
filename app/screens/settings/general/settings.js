@@ -1,4 +1,4 @@
-// Copyright (c) 2016-present Mattermost, Inc. All Rights Reserved.
+// Copyright (c) 2016-present TinkerTech, Inc. All Rights Reserved.
 // See License.txt for license information.
 
 import React, {PureComponent} from 'react';
@@ -78,7 +78,7 @@ class Settings extends PureComponent {
         const {intl, navigator, theme} = this.props;
         navigator.push({
             screen: 'About',
-            title: intl.formatMessage({id: 'about.title', defaultMessage: 'About Mattermost'}),
+            title: intl.formatMessage({id: 'about.title', defaultMessage: 'About Messenger'}),
             animated: true,
             backButtonTitle: '',
             navigatorStyle: {
@@ -298,7 +298,7 @@ class Settings extends PureComponent {
                     />
                     }
                     <SettingsItem
-                        defaultMessage='About Mattermost'
+                        defaultMessage='About Messenger'
                         i18nId='about.title'
                         iconName='ios-information-circle'
                         iconType='ion'
