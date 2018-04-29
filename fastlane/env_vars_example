@@ -63,7 +63,7 @@ export IOS_MAIN_APP_IDENTIFIER=com.mattermost.rnbeta
 export IOS_EXTENSION_APP_IDENTIFIER=com.mattermost.rnbeta.MattermostShare
 
 # The iOS App Group identifier used to share data between the app and the extension
-export IOS_APP_GROUP=group.com.mattermost.rnbeta
+export IOS_APP_GROUP=group.com.kazpost.tink.rn
 
 # Method used to export the archive. Valid values are: app-store, ad-hoc, package, enterprise, development, developer-id
 export IOS_BUILD_EXPORT_METHOD=app-store

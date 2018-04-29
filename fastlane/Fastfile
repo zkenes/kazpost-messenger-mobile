@@ -103,7 +103,7 @@ platform :ios do
     end
 
     if Dir.exist?('../ios/MattermostShare/')
-      unless ENV['IOS_APP_GROUP'].nil? || ENV['IOS_APP_GROUP'].empty? || ENV['IOS_APP_GROUP'] == 'group.com.mattermost.rnbeta'
+      unless ENV['IOS_APP_GROUP'].nil? || ENV['IOS_APP_GROUP'].empty? || ENV['IOS_APP_GROUP'] == 'group.com.kazpost.tink.rn'
         update_app_group_identifiers(
             entitlements_file: './ios/Mattermost/Mattermost.entitlements',
             app_group_identifiers: [ENV['IOS_APP_GROUP']]

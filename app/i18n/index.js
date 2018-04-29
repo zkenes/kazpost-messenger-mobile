@@ -19,7 +19,6 @@ const TRANSLATIONS = {
 addLocaleData(enLocaleData);
 addLocaleData(ruLocaleData);
 
-
 export function getTranslations(locale) {
     return TRANSLATIONS[locale] || TRANSLATIONS[DEFAULT_LOCALE];
 }

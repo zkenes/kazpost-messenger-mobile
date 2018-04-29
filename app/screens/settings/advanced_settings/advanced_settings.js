@@ -176,7 +176,8 @@ class AdvancedSettings extends PureComponent {
                     <View style={style.divider}/>
                     <SettingsItem
                         defaultMessage='Delete File Cache'
-                        i18nId='mobile.advanced_settings.clear_downloads'
+
+                        /*i18nId='mobile.advanced_settings.clear_downloads'*/
                         iconName='md-trash'
                         iconType='ion'
                         onPress={this.clearDownloadCache}

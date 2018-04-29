@@ -4,12 +4,12 @@
     "DefaultTheme": "default",
     "ShowErrorsList": false,
     "MinServerVersion": "4.0.0",
-    "EELearnURL": "about.mattermost.com",
-    "TeamEditionLearnURL": "mattermost.org",
-    "AboutTeamURL": "http://www.mattermost.org/",
-    "AboutEnterpriseURL": "http://about.mattermost.com/",
-    "PlatformNoticeURL": "https://about.mattermost.com/platform-notice-txt/",
-    "MobileNoticeURL": "https://about.mattermost.com/mobile-notice-txt/",
+    "EELearnURL": "about.tink.kz",
+    "TeamEditionLearnURL": "tink.kz",
+    "AboutTeamURL": "http://www.tink.kz/",
+    "AboutEnterpriseURL": "http://about.tink.com/",
+    "PlatformNoticeURL": "https://about.tink.com/platform-notice-txt/",
+    "MobileNoticeURL": "https://about.tink.com/mobile-notice-txt/",
     "SegmentApiKey": "3MT7rAoC0OP7yy3ThzqFSAtKzmzqtUPX",
     "ExperimentalUsernamePressIsMention": false,
 
@@ -36,10 +36,10 @@
     "EnableMobileClientUpgrade": false,
     "EnableMobileClientUpgradeUserSetting": false,
     "EnableForceMobileClientUpgrade": false,
-    "MobileClientUpgradeAndroidApkLink": "https://about.mattermost.com/mattermost-android-app/",
-    "MobileClientUpgradeIosIpaLink": "https://about.mattermost.com/mattermost-ios-app/",
+    "MobileClientUpgradeAndroidApkLink": "https://about.tink.com/tink-android-app/",
+    "MobileClientUpgradeIosIpaLink": "https://about.tink.com/tink-ios-app/",
 
-    "AppGroupId": "group.com.mattermost.rnbeta",
+    "AppGroupId": "group.com.tink.rnbeta",
 
     "ShowSentryDebugOptions": false
 }

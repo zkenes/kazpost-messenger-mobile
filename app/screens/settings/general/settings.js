@@ -18,7 +18,7 @@ import {preventDoubleTap} from 'app/utils/tap';
 import {changeOpacity, makeStyleSheetFromTheme, setNavigatorStyles} from 'app/utils/theme';
 import {isValidUrl} from 'app/utils/url';
 
-import LocalConfig from 'assets/config';
+// import LocalConfig from 'assets/config';
 
 class Settings extends PureComponent {
     static propTypes = {
@@ -203,9 +203,9 @@ class Settings extends PureComponent {
     });
 
     openHelp = preventDoubleTap(() => {
-        const {config} = this.props;
-        const link = config.HelpLink ? config.HelpLink.toLowerCase() : '';
-
+        // const {config} = this.props;
+        // const link = config.HelpLink ? config.HelpLink.toLowerCase() : '';
+        const link = 'https://tink.kz';
         Linking.canOpenURL(link).then((supported) => {
             if (supported) {
                 Linking.openURL(link);
@@ -286,7 +286,7 @@ class Settings extends PureComponent {
                         showArrow={showArrow}
                         theme={theme}
                     />
-                    {LocalConfig.EnableMobileClientUpgrade && LocalConfig.EnableMobileClientUpgradeUserSetting &&
+                    { /*LocalConfig.EnableMobileClientUpgrade && LocalConfig.EnableMobileClientUpgradeUserSetting &&
                     <SettingsItem
                         defaultMessage='Check for Upgrade'
                         i18nId='mobile.settings.modal.check_for_upgrade'
@@ -295,7 +295,7 @@ class Settings extends PureComponent {
                         onPress={this.goToClientUpgrade}
                         showArrow={showArrow}
                         theme={theme}
-                    />
+                    />*/
                     }
                     <SettingsItem
                         defaultMessage='About Messenger'
